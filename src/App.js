@@ -7,7 +7,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Landing >,
   },
 ]);
 
@@ -17,11 +17,13 @@ const style = `
   text-black
   text-md
   font-body
+  min-h-screen
+  max-w-full
 `;
 
 function App() {
   return (
-    <div style={style}>
+    <div className={style} >
     <RouterProvider router={router} />
 
     </div>
