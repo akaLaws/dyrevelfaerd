@@ -36,12 +36,14 @@ const router = createBrowserRouter([
 
 // The page styling - in this case the overall styling for the body (substituted by a div in this case)
 const style = `
-  bg-sky-200
+  bg-blue-200
   text-black
-  text-md
+  text-sm
   font-body
   min-h-screen
   max-w-full
+  flex
+  flex-col
 `;
 
 function App() {
