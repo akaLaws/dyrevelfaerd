@@ -9,6 +9,8 @@ const Button = (props) => {
                 hover:bg-blue-900
                 text-white
                 w-fit
+                h-fit
+                place-self-end
             "
         >
             {props.text}

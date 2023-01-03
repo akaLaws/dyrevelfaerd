@@ -22,6 +22,7 @@ const CardVertical = (props) => {
                 border-gray-400
                 border-y
                 p-2
+                font-light
             ">
                 <img src={props.img} alt={props.alt} className="w-full object-contain" />
                 <p>{props.text}</p>
@@ -29,6 +30,7 @@ const CardVertical = (props) => {
             <p className="
                 italic 
                 p-2 
+                font-light
             ">
                 {props.msg}
             </p>

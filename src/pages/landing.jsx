@@ -51,17 +51,17 @@ const Landing = () => {
                 {/* Contacts */}
                 <ul>
                     <li>KONTAKT</li>
-                    <li>Tornebuskvej 22, 1.</li>
-                    <li>1131 København K</li>
-                    <li>CVR: 22446187</li>
-                    <li>Husk at du kan få fradrag på donationer op til 16.00 kr.</li>
+                    <li className="font-light">Tornebuskvej 22, 1.</li>
+                    <li className="font-light">1131 København K</li>
+                    <li className="font-light">CVR: 22446187</li>
+                    <li className="font-light">Husk at du kan få fradrag på donationer op til 16.00 kr.</li>
                 </ul>
                 <ul>
                     <li>PARTNERE</li>
-                    <li>ANIMA</li>
-                    <li>World Animal Protection</li>
-                    <li>Fødevarestyrelsen</li>
-                    <li>Faktalink</li>
+                    <li className="font-light">ANIMA</li>
+                    <li className="font-light">World Animal Protection</li>
+                    <li className="font-light">Fødevarestyrelsen</li>
+                    <li className="font-light">Faktalink</li>
                 </ul>
                 <p className="w-full text-center">&#169; Copyright 2020 - Foreningen For Dyrevelfærd</p>
             </footer>

@@ -1,35 +1,35 @@
-const InputField = (props) => {
-    return ( 
+const InputText = (props) => {
+    return (  
         <span className="
             flex 
+            flex-col
             w-full
-            md:max-w-[45%]
+            
             gap-4
             place-items-center
             
         ">
             <label 
                 for={props.id}
-                className="w-fit flex-initial text-left"
+                className="w-full flex-auto text-left"
             >{props.label}</label>
-            <input 
-                type={props.type}
+            <textarea 
                 id={props.id}
-                placeholder={props.label}
                 className="
                     p-2
                     rounded
                     border
                     border-blue-200
                     flex-auto
-                    place-self-stretch
+                    w-full
                     font-light
                 "
 
-            />
+            >
+                
+            </textarea>
         </span>
-        
-     );
+    );
 }
  
-export default InputField;
+export default InputText;

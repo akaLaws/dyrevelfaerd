@@ -31,10 +31,10 @@ const CardHorizontal = (props) => {
                 <h3 className="text-lg">
                     {props.headline}
                 </h3>
-                <p>
+                <p className="font-light">
                     {props.text}
                 </p>
-                <p className="text-gray-400">
+                <p className="text-gray-400 font-light">
                     Været på internatet i {props.days} dage
                 </p>
             </div>

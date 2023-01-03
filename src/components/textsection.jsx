@@ -14,7 +14,7 @@ const TextSection = (props) => {
         ">
             
             <Headline text={props.headline} className="text-blue-900"/>
-            <p>{props.text}</p>
+            <p className="font-light">{props.text}</p>
            
         </section>
      );
