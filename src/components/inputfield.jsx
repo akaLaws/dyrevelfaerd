@@ -2,16 +2,15 @@ const InputField = (props) => {
     return ( 
         <div className="
             flex 
-            
             w-full
             md:max-w-[45%]
-            gap-2 
+            gap-4
             place-items-center
             
         ">
             <label 
                 for={props.id}
-                className="w-10 flex-auto"
+                className="min-w-[40%] flex-auto text-right"
             >{props.label}</label>
             <input 
                 type={props.type}
@@ -20,9 +19,9 @@ const InputField = (props) => {
                 className="
                     p-2
                     rounded
-                    
+                    border
+                    border-blue-200
                     flex-auto
-                    
                 "
 
             />
