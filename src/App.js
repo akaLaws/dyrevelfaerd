@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Adminpanel from "./pages/Adminpanel";
+import Onepage from "./pages/Onepage";
 
 // The router elements
 const router = createBrowserRouter([
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/Detail",
+        path: "/home",
+        element: <Onepage />,
+      },
+      {
+        path: "/Detail:detailId",
         element: <Detail />,
       },
       {
