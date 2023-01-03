@@ -10,7 +10,7 @@ const InputText = (props) => {
             
         ">
             <label 
-                for={props.id}
+                htmlFor={props.id}
                 className="w-full flex-auto text-left"
             >{props.label}</label>
             <textarea 
