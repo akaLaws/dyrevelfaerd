@@ -1,3 +1,5 @@
+
+import { Outlet } from "react-router-dom";
 import TopMenu from "../components/TopMenu";
 
 
@@ -11,16 +13,24 @@ const Landing = () => {
         p-2
     `;
 
-const styleFooter = `
-        w-full
+    const styleFooter = `
+        w-3/4
+        mx-auto
         min-h-fit
         flex
         flex-wrap
         gap-6
-        place-content-around
+        place-content-between
         p-2
+        py-8
         mt-auto
         
+    `;
+
+    const styleMain = `
+        w-full
+        flex
+        flex-col
     `;
     return ( 
         <>
@@ -32,7 +42,9 @@ const styleFooter = `
                 
                 <TopMenu />
             </header>
-            <main>
+            <main className={styleMain}>
+                
+                <Outlet />
                 
             </main>
             <footer className={styleFooter}>
