@@ -33,7 +33,7 @@ const Onepage = () => {
                     </CardGallery>
                 </ColorContainer>
                 <CardGallery>
-                    <Headline text="Bliv frivillig" />
+                    <Headline text="Bliv frivillig" className="text-blue-900"/>
                     <CardVertical 
                         headline="headline" 
                         img="https://raw.githubusercontent.com/rts-cmk/dyrevelfaerd-opgave/main/logo.png" 
@@ -97,6 +97,8 @@ const Onepage = () => {
                 />
                 <ColorContainer color="white">
                     <CardGallery>
+                        <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />
+                        <Headline text="X dyr" className="text-gray-400 text-lg pb-8" />
                         <CardHorizontal
                             img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                             alt="sneaky kitty"

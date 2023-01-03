@@ -6,7 +6,7 @@ const CardGallery = (props) => {
         max-w-full
         md:max-w-[75%]
         mx-auto
-        place-content-evenly
+        place-content-between
         place-items-center
         py-8
         px-2
