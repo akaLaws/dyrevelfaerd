@@ -16,6 +16,7 @@ const Onepage = () => {
                     headline="headline"
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 />
+                <div id="about"></div>
                 <ColorContainer color="white">
                     <CardGallery>
                         <TextSection 
@@ -31,6 +32,7 @@ const Onepage = () => {
                             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. " 
                         />
                     </CardGallery>
+                    <div id="volunteer"></div>
                 </ColorContainer>
                 <CardGallery>
                     <Headline text="Bliv frivillig" className="text-blue-900"/>
@@ -53,10 +55,12 @@ const Onepage = () => {
                         msg="boop"
                     />
                 </CardGallery>
+                <div id="emergency"></div>
                 <HeroImage 
                     img="https://images.pexels.com/photos/288621/pexels-photo-288621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     headline="headline"
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    
                 />
                 <CardGallery>
                     <TextSection 
@@ -95,6 +99,7 @@ const Onepage = () => {
                     headline="headline"
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 />
+                <div id="adopt"></div>
                 <ColorContainer color="white">
                     <CardGallery>
                         <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />

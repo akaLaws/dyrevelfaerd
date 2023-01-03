@@ -6,11 +6,12 @@ import TopMenu from "../components/TopMenu";
 const Landing = () => {
     const styleHeader = `
         w-full
-        h-1/6
+        h-1/8
         flex
         place-content-around
         bg-white
         p-2
+        fixed
     `;
 
     const styleFooter = `
