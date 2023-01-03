@@ -1,6 +1,7 @@
 const Headline = (props) => {
+    const style = `w-full text-xl ${props.className}`;
     return ( 
-        <h2 className="w-full text-xl text-blue-900">{props.text}</h2>
+        <h2 className={style}>{props.text}</h2>
      );
 }
  
