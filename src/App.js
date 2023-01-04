@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <Onepage />,
       },
       {
-        path: "/Detail",
+        path: "/Detail/:detailId",
         element: <Detail />,
       },
       {
