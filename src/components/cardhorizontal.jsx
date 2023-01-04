@@ -1,8 +1,8 @@
 const CardHorizontal = (props) => {
     return ( 
         <section className="
-            w-80
-            max-w-sm
+            w-full
+            md:max-w-[48%]
             flex-auto
             grid
             grid-rows-1
@@ -18,6 +18,7 @@ const CardHorizontal = (props) => {
                     min-h-full
                     grid-start-1
                     row-start-1
+                    object-cover
                 "
             />
             <div className="
@@ -31,7 +32,7 @@ const CardHorizontal = (props) => {
                 <h3 className="text-lg">
                     {props.headline}
                 </h3>
-                <p className="font-light">
+                <p className="font-light mb-4">
                     {props.text}
                 </p>
                 <p className="text-gray-400 font-light">

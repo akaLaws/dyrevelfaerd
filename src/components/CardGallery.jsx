@@ -7,7 +7,7 @@ const CardGallery = (props) => {
         md:max-w-[75%]
         mx-auto
         place-content-between
-        place-items-center
+        place-items-start
         py-8
         px-2
         ${props.className}

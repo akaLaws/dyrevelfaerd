@@ -24,14 +24,14 @@ const Landing = () => {
         place-content-between
         p-2
         py-8
-        mt-auto
-        
+      
     `;
 
     const styleMain = `
         w-full
         flex
         flex-col
+        mt-[5%]
     `;
     return ( 
         <>
@@ -59,10 +59,10 @@ const Landing = () => {
                 </ul>
                 <ul>
                     <li>PARTNERE</li>
-                    <li className="font-light">ANIMA</li>
-                    <li className="font-light">World Animal Protection</li>
-                    <li className="font-light">Fødevarestyrelsen</li>
-                    <li className="font-light">Faktalink</li>
+                    <li className="font-light text-blue-600">ANIMA</li>
+                    <li className="font-light text-blue-600">World Animal Protection</li>
+                    <li className="font-light text-blue-600">Fødevarestyrelsen</li>
+                    <li className="font-light text-blue-600">Faktalink</li>
                 </ul>
                 <p className="w-full text-center">&#169; Copyright 2020 - Foreningen For Dyrevelfærd</p>
             </footer>

@@ -2,14 +2,15 @@ const CardVertical = (props) => {
     return ( 
         <section className="
             flex-auto 
-            max-w-full
-            w-60
+            w-full
+            md:max-w-[30%]
             bg-gray-100 
             border-gray-400 
             border
             flex 
             flex-col 
             text-gray-600
+            place-self-stretch
         ">
             <h3 className="
                 w-full 
@@ -25,7 +26,7 @@ const CardVertical = (props) => {
                 font-light
             ">
                 <img src={props.img} alt={props.alt} className="w-full object-contain" />
-                <p>{props.text}</p>
+                <p className="my-4">{props.text}</p>
             </div>
             <p className="
                 italic 

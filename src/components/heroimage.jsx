@@ -14,17 +14,26 @@ const HeroImage = (props) => {
                 place-items-center 
                 place-content-center
                 p-4
-                text-white" 
+                text-white
+                
+                " 
             style={customStyle}>
             <section className="w-3/4">
                 <h2 className="
                     text-3xl
                     uppercase
                     pb-4
+                    drop-shadow-lg
                 ">
                     {props.headline}
                 </h2>
-                <p>{props.text}</p>
+                <p className="
+                    text-lg
+                    drop-shadow-lg
+                    font-light
+                ">
+                    {props.text}
+                </p>
             </section>
         </div>
      );
