@@ -10,6 +10,7 @@ import TextSection from "../components/TextSection";
 import Headline from "../components/Headline";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import Message from "../components/Message";
 
 // React and package imports
 import axios from "axios";
@@ -172,14 +173,14 @@ const Onepage = () => {
                         action={(event) => setSubName(event.target.value)}
                     />
                     <span className="w-full flex place-content-end gap-2 place-items-center">
-                    <p className="text-blue-600 text-right">{message}</p>
+                    
                     <Button 
                         text="send"
                         action={newSubscriber} 
                     />
                     </span> 
                 </form>
-                
+                <Message text={message} color="green" />
             </CardGallery>
 
             {heroData && heroData.filter(item => item.id === 3).map(item => 

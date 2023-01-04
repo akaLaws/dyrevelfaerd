@@ -1,5 +1,6 @@
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import Message from "../components/Message";
 
 import { useState } from "react";
 import axios from "axios";
@@ -13,7 +14,7 @@ const Login = () => {
 
     const [loginUser, setLoginUser] = useState();
     const [loginPass, setLoginPass] = useState();
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState({text:'', color:''});
 
     const loginAuth = (event) => {
         event.preventDefault();
@@ -26,11 +27,11 @@ const Login = () => {
             console.log(response)
              // Sets cookie to expire after an hour of login
             cookies.set('token', response.data.token, {path:'/', maxAge:3600});
-            setMessage('Du er logget ind');
+            setMessage({text:'Du er looget ind', color:'green'});
         })
         .catch(error => {
             console.log(error);
-            setMessage('Forkert brugernavn/password');
+            setMessage({text:'Forkert brugernavn/password', color:'red'});
             
         });
 
@@ -70,7 +71,7 @@ const Login = () => {
             action={loginAuth}
         />
     </form>
-    <p className="w-full text-center text-blue-600" >{message}</p>
+    <Message text={message.text} color={message.color} />
     </>
     );
 }
