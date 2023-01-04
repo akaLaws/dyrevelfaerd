@@ -25,6 +25,7 @@ const InputField = (props) => {
                     place-self-stretch
                     font-light
                 "
+                onChange={props.action}
 
             />
         </span>

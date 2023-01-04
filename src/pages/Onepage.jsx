@@ -24,10 +24,13 @@ const Onepage = () => {
     const [adoptData,setAdoptData] = useState();
     const [volunteerData,setVolunteerData] = useState();
     const [assetData,setAssetData] = useState();
+    // const [subscribeData,setSubscribeData] = useState();
 
-    const [errors,setErrors] = useState([]);
+    const [subName, setSubName] = useState();
+    const [subMail, setSubMail] = useState();
+    const [message, setMessage] = useState();
 
-    errors && console.log(errors);
+    // const [errors,setErrors] = useState([]);
 
     // Using promise.all to fetch multiple responses as almost all the database is needed for the landingpage.
     // NOTE : As of July 15, 2020, Axios updated its GitHub README file to reflect that the axios.all helper method has been deprecated and should be replaced with Promise.all.
@@ -57,13 +60,37 @@ const Onepage = () => {
                 setAssetData(asset);
             })
             .catch(error =>{
-                setErrors(error);
+                // setErrors(true);
                 console.log(error);
             });
         }
     useEffect(() =>  {
         getData();
     },[]);
+
+    const newSubscriber = (event) => {
+        event.preventDefault();
+
+        console.log(subMail);
+        const endpoint = `http://localhost:4000/api/v1/subscribers`;
+        axios.post(endpoint, {
+            name :subName, 
+            email :subMail
+        }).then(response => {
+            // setSubscribeData(response);
+            console.log(response);
+            setMessage('Du er nu Tilmeldt');
+        }).catch(error => {
+            // setErrors(true);
+            console.log(error);
+        });
+
+        document.querySelector('#name').value='';
+        document.querySelector('#email').value='';
+
+        
+
+    }
 
     return (
         <>
@@ -117,36 +144,42 @@ const Onepage = () => {
             )}
 
             <CardGallery>
+            
                 <TextSection 
                     headline="Tilmeld vores Nyhedsbrev" 
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
+                    
                 />
                 <form className="
                     flex
                     flex-wrap
                     flex-auto
                     place-content-between
-                    mt-16
+                    mt-8
                     gap-2
 
                 ">
                     <InputField 
-                        label="E-mail: " 
+                        label="E-mail" 
                         type="email" 
                         id="email" 
+                        action={(event) => setSubMail(event.target.value)}
                     />
                     <InputField 
-                        label="Navn: " 
+                        label="Navn" 
                         type="text" 
                         id="name" 
+                        action={(event) => setSubName(event.target.value)}
                     />
-                    <span className="w-full flex place-content-end">
+                    <span className="w-full flex place-content-end gap-2 place-items-center">
+                    <p className="text-blue-600 text-right">{message}</p>
                     <Button 
-                        text="send" 
+                        text="send"
+                        action={newSubscriber} 
                     />
-                    </span>
-                    
+                    </span> 
                 </form>
+                
             </CardGallery>
 
             {heroData && heroData.filter(item => item.id === 3).map(item => 
