@@ -31,7 +31,7 @@ const Landing = () => {
         w-full
         flex
         flex-col
-        mt-[5%]
+        mt-[3%]
     `;
     return ( 
         <>

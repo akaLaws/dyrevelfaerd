@@ -10,7 +10,6 @@ import TextSection from "../components/TextSection";
 import Headline from "../components/Headline";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import ErrorHandling from "../components/ErrorHandling";
 
 // React and package imports
 import axios from "axios";
@@ -27,6 +26,8 @@ const Onepage = () => {
     const [assetData,setAssetData] = useState();
 
     const [errors,setErrors] = useState([]);
+
+    errors && console.log(errors);
 
     // Using promise.all to fetch multiple responses as almost all the database is needed for the landingpage.
     // NOTE : As of July 15, 2020, Axios updated its GitHub README file to reflect that the axios.all helper method has been deprecated and should be replaced with Promise.all.
@@ -75,7 +76,6 @@ const Onepage = () => {
                     text={item.content}
                 />
             )}
-            {errors && !heroData && <ErrorHandling content={errors} />}
             
             <div id="about"></div>
 
@@ -88,7 +88,7 @@ const Onepage = () => {
                             text={item.content} />
                     )}
                 </CardGallery>
-                {errors && !aboutData && <ErrorHandling content={errors} />}
+
             </ColorContainer>
 
             <div id="volunteer"></div>
@@ -104,8 +104,7 @@ const Onepage = () => {
                             msg={item.extra} />
                     )}
             </CardGallery>
-            {errors && !volunteerData && <ErrorHandling content={errors} />}
-
+      
             <div id="emergency"></div>
 
             {heroData && heroData.filter(item => item.id === 2).map(item => 
@@ -116,7 +115,6 @@ const Onepage = () => {
                     text={item.content}
                 />
             )}
-            {errors && !heroData && <ErrorHandling content={errors} />}
 
             <CardGallery>
                 <TextSection 
@@ -159,7 +157,6 @@ const Onepage = () => {
                     text={item.content}
                 />
             )}
-            {errors && !heroData && <ErrorHandling content={errors} />}
 
             <div id="adopt"></div>
 
@@ -168,17 +165,18 @@ const Onepage = () => {
                     <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />
                     <Headline text={adoptData ? adoptData.length + ' dyr' : '0'} className="text-gray-400 text-lg pb-8" />
                     {adoptData && adoptData.map(item => 
-                        <CardHorizontal
-                            key={item.id}
-                            img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
-                            alt={item.name}
-                            headline={item.name}
-                            text={item.description}
-                            days={item.age}
-                        />
+                            <CardHorizontal
+                                key={item.id}
+                                img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                                alt={item.name}
+                                headline={item.name}
+                                text={item.description}
+                                days={item.age}
+                                linkId={item.id.toString()}
+                            />
                     )}
                 </CardGallery>
-                {errors && !adoptData && <ErrorHandling content={errors} />}
+
             </ColorContainer>
         </>
       );

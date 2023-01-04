@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const CardHorizontal = (props) => {
     return ( 
         <section className="
             w-full
-            md:max-w-[48%]
+            md:max-w-[45%]
             flex-auto
             grid
             grid-rows-1
@@ -29,9 +31,12 @@ const CardHorizontal = (props) => {
                 place-content-between
                 py-8"
             > 
-                <h3 className="text-lg">
-                    {props.headline}
-                </h3>
+                {/* This link is a little clumsy - I'd rather it was the whole card but the takes som CSS adjustments and I'm in hurry for now */}
+                <Link to={`/detail/${props.linkId}`} >
+                    <h3 className="text-lg hover:text-blue-600">
+                        {props.headline}
+                    </h3>
+                </Link>
                 <p className="font-light mb-4">
                     {props.text}
                 </p>
