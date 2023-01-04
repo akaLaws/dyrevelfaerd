@@ -10,7 +10,7 @@ const InputField = (props) => {
         ">
             <label 
                 htmlFor={props.id}
-                className="w-fit flex-initial text-left"
+                className="w-fit flex-initial text-left md:min-w-[30%]"
             >{props.label}</label>
             <input 
                 type={props.type}
