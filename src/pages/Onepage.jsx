@@ -1,153 +1,185 @@
-import Headline from "../components/Headline";
+// Layout components
+import HeroImage from "../components/HeroImage";
 import ColorContainer from "../components/ColorContainer";
-import TextSection from "../components/TextSection";
+import CardGallery from "../components/CardGallery";
+
+import CardVertical from "../components/CardVertical";
 import CardHorizontal from "../components/CardHorizontal";
+import TextSection from "../components/TextSection";
+
+import Headline from "../components/Headline";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import CardGallery from "../components/CardGallery";
-import CardVertical from "../components/CardVertical";
-import HeroImage from "../components/HeroImage";
+import ErrorHandling from "../components/ErrorHandling";
+
+// React and package imports
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 const Onepage = () => {
+
+    // Data variables
+    const [aboutData,setAboutData] = useState();
+    const [heroData,setHeroData] = useState();
+    const [adoptData,setAdoptData] = useState();
+    const [volunteerData,setVolunteerData] = useState();
+    const [assetData,setAssetData] = useState();
+
+    const [errors,setErrors] = useState([]);
+
+    // Using promise.all to fetch multiple responses as almost all the database is needed for the landingpage.
+    // NOTE : As of July 15, 2020, Axios updated its GitHub README file to reflect that the axios.all helper method has been deprecated and should be replaced with Promise.all.
+    
+        const getData = () =>{
+            
+            const endpoints = [
+                'http://localhost:4000/api/v1/abouts', 
+                'http://localhost:4000/api/v1/adoptsections', 
+                'http://localhost:4000/api/v1/animals', 
+                'http://localhost:4000/api/v1/volunteers', 
+                'http://localhost:4000/api/v1/assets', 
+            ];
+            
+            Promise.all(endpoints.map((endpoint) => axios.get(endpoint)))
+            .then(([
+                {data: about}, 
+                {data: hero}, 
+                {data: adopt}, 
+                {data: volunteer},
+                {data: asset}
+            ] )=> {
+                setAboutData(about);
+                setHeroData(hero);
+                setAdoptData(adopt);
+                setVolunteerData(volunteer);
+                setAssetData(asset);
+            })
+            .catch(error =>{
+                setErrors(error);
+                console.log(error);
+            });
+        }
+    useEffect(() =>  {
+        getData();
+    },[]);
+
     return (
         <>
-        <HeroImage 
-                    img="https://images.pexels.com/photos/850602/pexels-photo-850602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    headline="headline"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                />
-                <div id="about"></div>
-                <ColorContainer color="white">
-                    <CardGallery>
-                        <TextSection 
-                            headline="headline"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. " 
-                        />
-                        <TextSection 
-                            headline="headline"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. " 
-                        />
-                        <TextSection 
-                            headline="headline"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. " 
-                        />
-                    </CardGallery>
-                    <div id="volunteer"></div>
-                </ColorContainer>
-                <CardGallery>
-                    <Headline text="Bliv frivillig" className="text-blue-900"/>
-                    <CardVertical 
-                        headline="headline" 
-                        img="https://raw.githubusercontent.com/rts-cmk/dyrevelfaerd-opgave/main/logo.png" 
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. "
-                        msg="boop"
-                    />
-                    <CardVertical 
-                        headline="headline" 
-                        img="https://raw.githubusercontent.com/rts-cmk/dyrevelfaerd-opgave/main/logo.png" 
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. "
-                        msg="boop"
-                    />
-                    <CardVertical 
-                        headline="headline" 
-                        img="https://raw.githubusercontent.com/rts-cmk/dyrevelfaerd-opgave/main/logo.png" 
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eleifend luctus metus sit amet consectetur. Proin luctus consequat facilisis. "
-                        msg="boop"
-                    />
-                </CardGallery>
-                <div id="emergency"></div>
+            
+            {heroData && heroData.filter(item => item.id === 1).map(item => 
                 <HeroImage 
-                    img="https://images.pexels.com/photos/288621/pexels-photo-288621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    headline="headline"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                    
+                    key={item.id}
+                    img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                    headline={item.title}
+                    text={item.content}
                 />
-                <CardGallery>
-                    <TextSection 
-                        headline="Tilmeld vores Nyhedsbrev" 
-                        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
-                    />
-                    <form className="
-                        flex
-                        flex-wrap
-                        flex-auto
-                        place-content-between
-                        mt-16
-                        gap-2
+            )}
+            {errors && !heroData && <ErrorHandling content={errors} />}
+            
+            <div id="about"></div>
 
-                    ">
-                        <InputField 
-                            label="E-mail: " 
-                            type="email" 
-                            id="email" 
-                        />
-                        <InputField 
-                            label="Navn: " 
-                            type="text" 
-                            id="name" 
-                        />
-                        <span className="w-full flex place-content-end">
-                        <Button 
-                            text="send" 
-                        />
-                        </span>
-                        
-                    </form>
+            <ColorContainer color="white">
+                <CardGallery>
+                    {aboutData && aboutData.map(item => 
+                        <TextSection 
+                            key={item.id} 
+                            headline={item.title} 
+                            text={item.content} />
+                    )}
                 </CardGallery>
+                {errors && !aboutData && <ErrorHandling content={errors} />}
+            </ColorContainer>
+
+            <div id="volunteer"></div>
+
+            <CardGallery>
+                <Headline text="Bliv frivillig" className="text-blue-900"/>
+                    {volunteerData && volunteerData.map(item => 
+                        <CardVertical 
+                            key={item.id} 
+                            headline={item.title} 
+                            img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                            text={item.content} 
+                            msg={item.extra} />
+                    )}
+            </CardGallery>
+            {errors && !volunteerData && <ErrorHandling content={errors} />}
+
+            <div id="emergency"></div>
+
+            {heroData && heroData.filter(item => item.id === 2).map(item => 
                 <HeroImage 
-                    img="https://images.pexels.com/photos/755447/pexels-photo-755447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    headline="headline"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    key={item.id}
+                    img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                    headline={item.title}
+                    text={item.content}
                 />
-                <div id="adopt"></div>
-                <ColorContainer color="white">
-                    <CardGallery>
-                        <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />
-                        <Headline text="X dyr" className="text-gray-400 text-lg pb-8" />
+            )}
+            {errors && !heroData && <ErrorHandling content={errors} />}
+
+            <CardGallery>
+                <TextSection 
+                    headline="Tilmeld vores Nyhedsbrev" 
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
+                />
+                <form className="
+                    flex
+                    flex-wrap
+                    flex-auto
+                    place-content-between
+                    mt-16
+                    gap-2
+
+                ">
+                    <InputField 
+                        label="E-mail: " 
+                        type="email" 
+                        id="email" 
+                    />
+                    <InputField 
+                        label="Navn: " 
+                        type="text" 
+                        id="name" 
+                    />
+                    <span className="w-full flex place-content-end">
+                    <Button 
+                        text="send" 
+                    />
+                    </span>
+                    
+                </form>
+            </CardGallery>
+
+            {heroData && heroData.filter(item => item.id === 3).map(item => 
+                <HeroImage 
+                    key={item.id}
+                    img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                    headline={item.title}
+                    text={item.content}
+                />
+            )}
+            {errors && !heroData && <ErrorHandling content={errors} />}
+
+            <div id="adopt"></div>
+
+            <ColorContainer color="white">
+                <CardGallery>
+                    <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />
+                    <Headline text={adoptData ? adoptData.length + ' dyr' : '0'} className="text-gray-400 text-lg pb-8" />
+                    {adoptData && adoptData.map(item => 
                         <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
+                            key={item.id}
+                            img={assetData && assetData.filter(asset => asset.id === item.assetId).map((asset) => asset.url)} 
+                            alt={item.name}
+                            headline={item.name}
+                            text={item.description}
+                            days={item.age}
                         />
-                        <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
-                        />
-                        <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
-                        />
-                        <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
-                        />
-                        <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
-                        />
-                        <CardHorizontal
-                            img="https://images.pexels.com/photos/3508173/pexels-photo-3508173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt="sneaky kitty"
-                            headline="animal"
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                            days="4"
-                        />
-                    </CardGallery>
-                </ColorContainer>
+                    )}
+                </CardGallery>
+                {errors && !adoptData && <ErrorHandling content={errors} />}
+            </ColorContainer>
         </>
       );
 }
