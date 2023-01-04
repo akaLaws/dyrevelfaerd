@@ -3,7 +3,7 @@ const CardGallery = (props) => {
         flex
         flex-wrap
         gap-2
-        max-w-full
+        w-full
         md:max-w-[75%]
         mx-auto
         place-content-between

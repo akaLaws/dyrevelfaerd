@@ -14,8 +14,7 @@ const HeroImage = (props) => {
                 place-items-center 
                 place-content-center
                 p-4
-                text-white
-                
+                text-white   
                 " 
             style={customStyle}>
             <section className="w-3/4">

@@ -22,35 +22,35 @@ const Adminpanel = () => {
     // Using promise.all to fetch multiple responses as almost all the database is needed for the landingpage.
     // NOTE : As of July 15, 2020, Axios updated its GitHub README file to reflect that the axios.all helper method has been deprecated and should be replaced with Promise.all.
     
-        const getData = () =>{
-            
-            const endpoints = [
-                'http://localhost:4000/api/v1/abouts', 
-                'http://localhost:4000/api/v1/adoptsections', 
-                'http://localhost:4000/api/v1/animals', 
-                'http://localhost:4000/api/v1/volunteers', 
-                'http://localhost:4000/api/v1/assets', 
-            ];
-            
-            Promise.all(endpoints.map((endpoint) => axios.get(endpoint)))
-            .then(([
-                {data: about}, 
-                {data: hero}, 
-                {data: adopt}, 
-                {data: volunteer},
-                {data: asset}
-            ] )=> {
-                setAboutData(about);
-                setHeroData(hero);
-                setAdoptData(adopt);
-                setVolunteerData(volunteer);
-                setAssetData(asset);
-            })
-            .catch(error =>{
-                setErrors(true);
-                console.log(error);
-            });
-        }
+    const getData = () =>{
+        
+        const endpoints = [
+            'http://localhost:4000/api/v1/abouts', 
+            'http://localhost:4000/api/v1/adoptsections', 
+            'http://localhost:4000/api/v1/animals', 
+            'http://localhost:4000/api/v1/volunteers', 
+            'http://localhost:4000/api/v1/assets', 
+        ];
+        
+        Promise.all(endpoints.map((endpoint) => axios.get(endpoint)))
+        .then(([
+            {data: about}, 
+            {data: hero}, 
+            {data: adopt}, 
+            {data: volunteer},
+            {data: asset}
+        ] )=> {
+            setAboutData(about);
+            setHeroData(hero);
+            setAdoptData(adopt);
+            setVolunteerData(volunteer);
+            setAssetData(asset);
+        })
+        .catch(error =>{
+            setErrors(true);
+            console.log(error);
+        });
+    }
     useEffect(() =>  {
         getData();
     },[]);
