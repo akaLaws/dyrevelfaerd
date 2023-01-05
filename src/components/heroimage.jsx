@@ -4,6 +4,7 @@ const HeroImage = (props) => {
     };
     return ( 
         <div 
+            loading='lazy'
             className="
                 w-full 
                 h-80
