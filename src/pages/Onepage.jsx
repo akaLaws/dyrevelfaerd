@@ -15,6 +15,8 @@ import Message from "../components/Message";
 // React and package imports
 import axios from "axios";
 import { useEffect, useState } from "react";
+import HeroSlider from "../components/HeroSlider";
+
 
 const Onepage = () => {
 
@@ -112,7 +114,7 @@ const Onepage = () => {
                     text={item.content}
                 />
             )}
-            
+
             <div id="about"></div>
 
             <ColorContainer color="white">
@@ -130,7 +132,7 @@ const Onepage = () => {
             <div id="volunteer"></div>
 
             <CardGallery>
-                <Headline text="Bliv frivillig" className="text-blue-900"/>
+                <Headline text="Bliv frivillig" className="text-sky-700"/>
                     {volunteerData && volunteerData.map(item => 
                         <CardVertical 
                             key={item.id} 
@@ -204,7 +206,7 @@ const Onepage = () => {
 
             <ColorContainer color="white">
                 <CardGallery>
-                    <Headline text="Dyr hos os" className="text-blue-900 text-3xl" />
+                    <Headline text="Dyr hos os" className="text-sky-700 text-3xl" />
                     <Headline text={adoptData ? adoptData.length + ' dyr' : '0'} className="text-gray-400 text-lg pb-8" />
                     {adoptData && adoptData.map(item => 
                             <CardHorizontal
@@ -218,7 +220,7 @@ const Onepage = () => {
                             />
                     )}
                 </CardGallery>
-
+                {assetData && <HeroSlider assets={assetData}/>}
             </ColorContainer>
         </>
       );
