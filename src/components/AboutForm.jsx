@@ -4,13 +4,13 @@ import Button from "./Button";
 import Message from "./Message";
 
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
 import { useState } from "react";
 
-const AdoptForm = (props) => {
+const AboutForm = (props) => {
     // Auth Data for the headers
-    const cookies = new Cookies();
-    const token = cookies.get('token');
+    const cookies = useCookies(['token']);
+    const token = cookies[0].token;
     
     const header = (contentType) => {
         return {headers: {
@@ -28,10 +28,9 @@ const AdoptForm = (props) => {
    
 
 
-    const newAbout = (event) => {
-        event.preventDefault();
-
-        const endpoint = `http://localhost:4000/api/v1/animals`;
+    const newAbout = () => {
+        
+        const endpoint = `http://localhost:4000/api/v1/abouts`;
         const body = {
             title: aboutTitle,
             content: aboutContent,
@@ -41,11 +40,11 @@ const AdoptForm = (props) => {
         axios.post(endpoint, body, header('application/json', token))
         .then(response =>{
             console.log(response);
-            setAboutMsg({text:'Det nye dyr er tilføjet',color:'green'});
+            setAboutMsg({text:'Det nye info er tilføjet',color:'green'});
         })
         .catch(error => {
             console.log(error);
-            setAboutMsg({text:'Noget gik galt', color:'red'});
+            setAboutMsg([{text:'Noget gik galt', color:'red'}]);
         });
 
        setAboutTitle('');
@@ -53,11 +52,10 @@ const AdoptForm = (props) => {
 
     }
     
+    
+    const editAbout = () =>{
 
-    const editAbout = (event) =>{
-        event.preventDefault();
-
-        const endpoint = `http://localhost:4000/api/v1/animals/${props.editId}`;
+        const endpoint = `http://localhost:4000/api/v1/abouts/${props.editId}`;
         const body = {
             name: aboutTitle,
             description: aboutContent,
@@ -67,7 +65,7 @@ const AdoptForm = (props) => {
         axios.put(endpoint, body, header('application/json', token))
         .then(response =>{
             console.log(response);
-            setAboutMsg({text:'Dyret er opdateret',color:'green'});
+            setAboutMsg({text:'info er opdateret',color:'green'});
         })
         .catch(error => {
             console.log(error);
@@ -76,27 +74,42 @@ const AdoptForm = (props) => {
 
     }
 
+    const validateForm = (event) => {
+        event.preventDefault();
+
+        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+
+        !validInputRegex.test(aboutTitle) && setAboutMsg({text:'Titel er ugyldigt', color:'red'});
+        !validInputRegex.test(aboutContent) && setAboutMsg({text:'Indhold er ugyldigt', color:'red'});
+        
+        if(validInputRegex.test(aboutTitle) && validInputRegex.test(aboutContent)){
+            setAboutMsg({text:'Loading..', color:'blue'});
+            props.editId && props.editId !== '' ? editAbout() : newAbout();
+        }
+    }
+    
     return ( 
         <>
-        <form className="flex flex-wrap gap-2 py-2">
-        <InputField 
-            label="Titel" 
-            type="text" 
-            id="aboutTitle"
-            value={aboutTitle} 
-            action={(event) => setAboutTitle(event.target.value)}/>
-        <InputText 
-            label="Indhold" 
-            id="aboutContent" 
-            value={aboutContent} 
-            action={(event) => setAboutContent(event.target.value)}/>
-        <Button 
-            text={props.editId ? 'Rediger' : 'Tilføj'}
-            action={props.editId ? editAbout : newAbout} />
-    </form>
-    <Message content={aboutMsg} />
-    </>
+            <form className="flex flex-wrap gap-2 py-2">
+                <InputField 
+                    label="Titel" 
+                    type="text" 
+                    id="aboutTitle"
+                    value={aboutTitle} 
+                    action={(event) => setAboutTitle(event.target.value)}/>
+                <InputText 
+                    label="Indhold" 
+                    id="aboutContent" 
+                    value={aboutContent} 
+                    action={(event) => setAboutContent(event.target.value)}/>
+                <Button 
+                    text={props.editId ? 'Rediger' : 'Tilføj'}
+                    action={validateForm}
+                />
+            </form>
+            <Message content={aboutMsg} />
+        </>
      );
 }
  
-export default AdoptForm;
+export default AboutForm;

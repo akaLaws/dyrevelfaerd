@@ -13,6 +13,7 @@ const Button = (props) => {
                 h-fit
                 place-self-end
             "
+            type="button"
         >
             {props.text}
         </button>

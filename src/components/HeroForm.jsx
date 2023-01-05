@@ -4,13 +4,13 @@ import Button from "./Button";
 import Message from "./Message";
 
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
 import { useState } from "react";
 
 const HeroForm = (props) => {
     // Auth Data for the headers
-    const cookies = new Cookies();
-    const token = cookies.get('token');
+    const cookies = useCookies(['token']);
+    const token = cookies[0].token;
     
     const header = (contentType) => {
         return {headers: {
@@ -29,8 +29,7 @@ const HeroForm = (props) => {
    
 
 
-    const newHero = (event) => {
-        event.preventDefault();
+    const newHero = () => {
 
         const endpoint = `http://localhost:4000/api/v1/adoptsections`;
         const body = {
@@ -57,8 +56,7 @@ const HeroForm = (props) => {
     }
     
 
-    const editHero = (event) =>{
-        event.preventDefault();
+    const editHero = () =>{
 
         const endpoint = `http://localhost:4000/api/v1/adoptsections/${props.editId}`;
         const body = {
@@ -78,6 +76,19 @@ const HeroForm = (props) => {
             setHeroMsg({text:'Noget gik galt', color:'red'});
         });
 
+    }
+    const validateForm = (event) => {
+        event.preventDefault();
+
+        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+
+        !validInputRegex.test(heroTitle) && setHeroMsg({text:'Titel er ugyldigt', color:'red'});
+        !validInputRegex.test(heroContent) && setHeroMsg({text:'Indhold er ugyldigt', color:'red'});
+        
+        if(validInputRegex.test(heroTitle) && validInputRegex.test(heroContent)){
+            setHeroMsg({text:'Loading..', color:'blue'});
+            props.editId && props.editId !== '' ? editHero() : newHero();
+        }
     }
 
     return ( 
@@ -104,7 +115,7 @@ const HeroForm = (props) => {
             action={(event) => setHeroContent(event.target.value)}/>
         <Button 
             text={props.editId ? 'Rediger' : 'Tilføj'}
-            action={props.editId ? editHero : newHero} />
+            action={validateForm} />
     </form>
     <Message content={heroMsg} />
     </>

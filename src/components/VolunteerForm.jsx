@@ -4,13 +4,13 @@ import Button from "./Button";
 import Message from "./Message";
 
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
 import { useState } from "react";
 
 const VolunteerForm = (props) => {
     // Auth Data for the headers
-    const cookies = new Cookies();
-    const token = cookies.get('token');
+    const cookies = useCookies(['token']);
+    const token = cookies[0].token;
     
     const header = (contentType) => {
         return {headers: {
@@ -30,8 +30,7 @@ const VolunteerForm = (props) => {
    
 
 
-    const newVolunteer = (event) => {
-        event.preventDefault();
+    const newVolunteer = () => {
 
         const endpoint = `http://localhost:4000/api/v1/volunteers`;
         const body = {
@@ -59,8 +58,7 @@ const VolunteerForm = (props) => {
     }
     
 
-    const editVolunteer = (event) =>{
-        event.preventDefault();
+    const editVolunteer = () =>{
 
         const endpoint = `http://localhost:4000/api/v1/volunteers/${props.editId}`;
         const body = {
@@ -83,6 +81,23 @@ const VolunteerForm = (props) => {
 
     }
 
+    const validateForm = (event) => {
+        event.preventDefault();
+
+        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+;
+
+        !validInputRegex.test(volunteerTitle) && setVolunteerMsg({text:'Titel er ugyldigt', color:'red'});
+        !validInputRegex.test(volunteerContent) && setVolunteerMsg({text:'Indhold er ugyldigt', color:'red'});
+        !validInputRegex.test(volunteerExtra) && setVolunteerMsg({text:'Melding er ugyldigt', color:'red'});
+        
+        if(validInputRegex.test(volunteerTitle) && validInputRegex.test(volunteerContent) && validInputRegex.test(volunteerExtra)){
+            setVolunteerMsg({text:'Loading..', color:'blue'});
+            props.editId && props.editId !== '' ? editVolunteer() : newVolunteer();
+        }
+    }
+        
+    
     return ( 
         <>
         <form className="flex flex-wrap gap-2 py-2">
@@ -112,7 +127,7 @@ const VolunteerForm = (props) => {
             action={(event) => setVolunteerExtra(event.target.value)}/>
         <Button 
             text={props.editId ? 'Rediger' : 'Tilføj'}
-            action={props.editId ? editVolunteer : newVolunteer} />
+            action={validateForm} />
     </form>
     <Message content={volunteerMsg} />
     </>

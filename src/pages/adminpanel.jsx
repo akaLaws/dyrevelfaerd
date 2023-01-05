@@ -1,12 +1,10 @@
 import CardGallery from "../components/CardGallery";
 import ColorContainer from "../components/ColorContainer";
-import InputField from "../components/InputField";
 import List from "../components/List";
 import Button from "../components/Button";
-import InputText from "../components/InputText";
 
+import AboutForm from "../components/AboutForm"
 import AdoptForm from "../components/AdoptForm";
-import AboutForm from "../components/AboutForm";
 import VolunteerForm from "../components/VolunteerForm";
 import HeroForm from "../components/HeroForm";
 
@@ -14,7 +12,7 @@ import HeroForm from "../components/HeroForm";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
 
 
 const Adminpanel = () => {
@@ -50,8 +48,8 @@ const Adminpanel = () => {
     `;
     
     // Auth Data for the headers
-    const cookies = new Cookies();
-    const token = cookies.get('token');
+    const cookies = useCookies(['token']);
+    const token = cookies[0].token;
     
 
     // Data variables
@@ -98,6 +96,7 @@ const Adminpanel = () => {
     }
     useEffect(() =>  {
         getData();
+
     },[]);
 
     
@@ -193,7 +192,7 @@ const Adminpanel = () => {
         }
     }
 
-
+    
     return (
         <ColorContainer color="white">
             
@@ -236,12 +235,8 @@ const Adminpanel = () => {
                 </List>
 
                 <List headline="Om os" className="md:max-w-[48%]">
-                <li>
-                        <form className="flex flex-wrap gap-2 py-2">
-                            <InputField label="Navn" type="text" id="aboutTitle" />
-                            <InputText label="Beskrivelse" id="aboutContent" />
-                            <Button text="Tilføj" />
-                        </form>
+                    <li>
+                        <AboutForm />
                     </li>
                     {aboutData && aboutData.map(item => 
                         <li
@@ -249,7 +244,7 @@ const Adminpanel = () => {
                             className={rowDisplayStyle}
                         >
                             <p className={titleDisplayStyle}>{item.title}</p>
-                            <p className={rowDisplayStyle}>{item.content}</p>
+                            <p className={colDisplayStyle}>{item.content}</p>
                             <span className={editDisplayStyle}>
                                 <Button name={item.id} text="Slet" action={deleteAbout} />
                                 <Button name={`aboutEditForm${item.id}`} text="Rediger" action={showEditForm} />
@@ -270,13 +265,8 @@ const Adminpanel = () => {
                 </List>
 
                 <List headline="Frivilligt arbejde" className="md:max-w-[48%]">
-                <li>
-                        <form className="flex flex-wrap gap-2 py-2">
-                            <InputField label="Titel" type="text" id="volunteerTitle" />
-                            <InputText label="Beskrivelse" id="volunteerContent" />
-                            <InputText label="Extra besked" id="volunteerExtra" />
-                            <Button text="Tilføj" />
-                        </form>
+                    <li>
+                        <VolunteerForm />
                     </li>
                     {volunteerData && volunteerData.map(item => 
                         <li
@@ -310,12 +300,7 @@ const Adminpanel = () => {
 
                 <List headline="Banner billeder">
                      <li>
-                        <form className="flex flex-wrap gap-2 py-2">
-                            <InputField label="Titel" type="text" id="bannerTitle" />
-                            <InputField label="Billede" type="file" id="bannerImg" />
-                            <InputText label="Beskrivelse" id="bannerContent" />
-                            <Button text="Tilføj" />
-                        </form>
+                        <HeroForm />
                     </li>
                     {heroData && heroData.map(item => 
                         <li

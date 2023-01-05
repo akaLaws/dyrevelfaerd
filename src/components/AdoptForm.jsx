@@ -4,13 +4,13 @@ import Button from "./Button";
 import Message from "./Message";
 
 import axios from "axios";
-import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
 import { useState } from "react";
 
 const AdoptForm = (props) => {
     // Auth Data for the headers
-    const cookies = new Cookies();
-    const token = cookies.get('token');
+    const cookies = useCookies(['token']);
+    const token = cookies[0].token;
     
     const header = (contentType) => {
         return {headers: {
@@ -30,8 +30,7 @@ const AdoptForm = (props) => {
    
 
 
-    const newAdopt = (event) => {
-        event.preventDefault();
+    const newAdopt = () => {
 
         const endpoint = `http://localhost:4000/api/v1/animals`;
         const body = {
@@ -60,8 +59,7 @@ const AdoptForm = (props) => {
     }
     
 
-    const editAdopt = (event) =>{
-        event.preventDefault();
+    const editAdopt = () =>{
 
         const endpoint = `http://localhost:4000/api/v1/animals/${props.editId}`;
         const body = {
@@ -83,7 +81,20 @@ const AdoptForm = (props) => {
         });
 
     }
+    const validateForm = (event) => {
+        event.preventDefault();
 
+        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+
+        !validInputRegex.test(adoptName) && setAdoptMsg({text:'Navn er ugyldigt', color:'red'});
+        !validInputRegex.test(adoptAge) && setAdoptMsg({text:'Alder er ugyldigt', color:'red'});
+        !validInputRegex.test(adoptDescribe) && setAdoptMsg({text:'Beskrivelse er ugyldigt', color:'red'});
+        
+        if(validInputRegex.test(adoptName) && validInputRegex.test(adoptDescribe) && validInputRegex.test(adoptAge)){
+            setAdoptMsg({text:'Loading..', color:'blue'});
+            props.editId && props.editId !== '' ? editAdopt() : newAdopt();
+        }
+    }
     return ( 
         <>
         <form className="flex flex-wrap gap-2 py-2">
@@ -113,7 +124,7 @@ const AdoptForm = (props) => {
             action={(event) => setAdoptDescribe(event.target.value)}/>
         <Button 
             text={props.editId ? 'Rediger' : 'Tilføj'}
-            action={props.editId ? editAdopt : newAdopt} />
+            action={validateForm} />
     </form>
     <Message content={adoptMsg} />
     </>
