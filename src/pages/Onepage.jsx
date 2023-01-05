@@ -16,7 +16,6 @@ import Message from "../components/Message";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 const Onepage = () => {
 
     // Data variables
@@ -29,7 +28,7 @@ const Onepage = () => {
 
     const [subName, setSubName] = useState();
     const [subMail, setSubMail] = useState();
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState({});
 
     // const [errors,setErrors] = useState([]);
 
@@ -80,10 +79,11 @@ const Onepage = () => {
         }).then(response => {
             // setSubscribeData(response);
             console.log(response);
-            setMessage('Du er nu Tilmeldt');
+            setMessage({text:'Du er nu Tilmeldt',color:'green'});
         }).catch(error => {
             // setErrors(true);
             console.log(error);
+            setMessage({text:'Var felterne udfyldt korrekt?',color:'red'});
         });
 
         document.querySelector('#name').value='';
@@ -180,7 +180,7 @@ const Onepage = () => {
                     />
                     </span> 
                 </form>
-                <Message text={message} color="green" />
+                <Message content={message} />
             </CardGallery>
 
             {heroData && heroData.filter(item => item.id === 3).map(item => 

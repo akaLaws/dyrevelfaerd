@@ -14,7 +14,7 @@ const Login = () => {
 
     const [loginUser, setLoginUser] = useState();
     const [loginPass, setLoginPass] = useState();
-    const [message, setMessage] = useState({text:'', color:''});
+    const [message, setMessage] = useState({});
 
     const loginAuth = (event) => {
         event.preventDefault();
@@ -71,7 +71,7 @@ const Login = () => {
             action={loginAuth}
         />
     </form>
-    <Message text={message.text} color={message.color} />
+    <Message content={message} />
     </>
     );
 }
