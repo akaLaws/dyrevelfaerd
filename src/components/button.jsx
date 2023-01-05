@@ -4,10 +4,10 @@ const Button = (props) => {
             name={props.name}
             onClick={props.action}
             className="
-                bg-blue-500
+                bg-sky-600
                 p-2
                 rounded
-                hover:bg-blue-900
+                hover:bg-sky-800
                 text-white
                 w-fit
                 h-fit

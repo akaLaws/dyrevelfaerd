@@ -17,7 +17,7 @@ const ErrorPage = () => {
             ">
                 Ups.. Vi kunne ikke finde siden du ledte efter
             </h2> 
-            <Link to={`home`}>
+            <Link to={`/`}>
                 <Button text="Vend tilbage til websiden" />
             </Link>
         </div>

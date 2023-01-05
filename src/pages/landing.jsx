@@ -53,18 +53,18 @@ const Landing = () => {
             <footer className={styleFooter}>
                 {/* Contacts */}
                 <ul>
-                    <li>KONTAKT</li>
+                    <li className="font-bold">KONTAKT</li>
                     <li className="font-light">Tornebuskvej 22, 1.</li>
                     <li className="font-light">1131 København K</li>
                     <li className="font-light">CVR: 22446187</li>
                     <li className="font-light">Husk at du kan få fradrag på donationer op til 16.00 kr.</li>
                 </ul>
                 <ul>
-                    <li>PARTNERE</li>
-                    <li className="font-light text-blue-600">ANIMA</li>
-                    <li className="font-light text-blue-600">World Animal Protection</li>
-                    <li className="font-light text-blue-600">Fødevarestyrelsen</li>
-                    <li className="font-light text-blue-600">Faktalink</li>
+                    <li className="font-bold">PARTNERE</li>
+                    <li className="text-sky-700">ANIMA</li>
+                    <li className="text-sky-700">World Animal Protection</li>
+                    <li className="text-sky-700">Fødevarestyrelsen</li>
+                    <li className="text-sky-700">Faktalink</li>
                 </ul>
                 <p className="w-full text-center">&#169; Copyright 2020 - Foreningen For Dyrevelfærd</p>
             </footer>

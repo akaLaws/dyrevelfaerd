@@ -13,7 +13,7 @@ const TextSection = (props) => {
             ${props.className}
             `}>
             
-            <Headline text={props.headline} className="text-blue-900"/>
+            <Headline text={props.headline} className="text-sky-700"/>
             <p className="font-light">{props.text}</p>
            
         </section>

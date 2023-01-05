@@ -33,7 +33,7 @@ const CardHorizontal = (props) => {
             > 
                 {/* This link is a little clumsy - I'd rather it was the whole card but the takes som CSS adjustments and I'm in hurry for now */}
                 <Link to={`/detail/${props.linkId}`} >
-                    <h3 className="text-lg hover:text-blue-600">
+                    <h3 className="text-lg hover:text-sky-700 font-bold">
                         {props.headline}
                     </h3>
                 </Link>

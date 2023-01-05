@@ -62,7 +62,7 @@ const router = createBrowserRouter([
 function App() {
   // The page styling - in this case the overall styling for the body (substituted by a div in this case) - I should do this proper..
 const style = `
-bg-blue-200
+bg-sky-100
 text-black
 text-sm
 font-body
