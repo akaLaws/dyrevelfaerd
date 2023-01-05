@@ -42,11 +42,11 @@ const TopMenu = () => {
             <button id="toggle" className="md:hidden" onClick={toggleMenu}>MENU</button>
 
             <div className={visibilityMenu} id="menu">
-                <Link to="home/" className="hover:text-black">Hjem</Link>
-                <Link reloadDocument to="#about" className="hover:text-black">Om os</Link>
-                <Link reloadDocument to="home#emergency" className="hover:text-black">Dyr i nød?</Link>
-                <Link reloadDocument to="home#volunteer" className="hover:text-black">Bliv Frivillig</Link>
-                <Link reloadDocument to="home#adopt" className="hover:text-black">Adoptér et dyr</Link>
+                <Link reloadDocument to="/" className="hover:text-black">Hjem</Link>
+                <Link reloadDocument to="/#about" className="hover:text-black">Om os</Link>
+                <Link reloadDocument to="/#emergency" className="hover:text-black">Dyr i nød?</Link>
+                <Link reloadDocument to="/#volunteer" className="hover:text-black">Bliv Frivillig</Link>
+                <Link reloadDocument to="/#adopt" className="hover:text-black">Adoptér et dyr</Link>
             </div>
         </nav>
      );
