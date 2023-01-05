@@ -1,6 +1,7 @@
 const Button = (props) => {
     return ( 
         <button 
+            name={props.name}
             onClick={props.action}
             className="
                 bg-blue-500

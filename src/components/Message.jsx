@@ -1,17 +1,25 @@
 const Message = (props) => {
+
+    // only works with red??7
+    const color = props.content.color;
+    const textcolor = `text-${color}-700` ;
+    const bgcolor = `bg-${color}-700` ;
+    const bordercolor = color ? `border-${color}-700` : `border-transparent`;
+    const text = props.content.text;
     return ( 
         <p className={`
             ${props.className}
-            text-${props.color}-800
+            ${textcolor}
             border
-            border-${props.color}-800
+            ${bordercolor}
             rounded-sm
-            bg-${props.color}-200
+            ${bgcolor}
             w-full
             mx-auto
             my-2
+            p-4
         `}>
-            {props.text}
+            {text}
         </p>
      );
 }

@@ -16,6 +16,7 @@ const InputField = (props) => {
                 type={props.type}
                 id={props.id}
                 placeholder={props.label}
+                value={props.value}
                 className="
                     p-2
                     rounded
@@ -24,6 +25,7 @@ const InputField = (props) => {
                     flex-auto
                     place-self-stretch
                     font-light
+                    bg-white
                 "
                 onChange={props.action}
 

@@ -15,6 +15,9 @@ const InputText = (props) => {
             >{props.label}</label>
             <textarea 
                 id={props.id}
+                placeholder={props.label}
+                value={props.value}
+                onChange={props.action}
                 className="
                     p-2
                     rounded
@@ -24,10 +27,7 @@ const InputText = (props) => {
                     w-full
                     font-light
                 "
-
-            >
-                
-            </textarea>
+            ></textarea>
         </span>
     );
 }
