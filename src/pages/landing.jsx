@@ -12,6 +12,8 @@ const Landing = () => {
         bg-white
         p-2
         fixed
+        z-20
+        shadow-md
     `;
 
     const styleFooter = `
