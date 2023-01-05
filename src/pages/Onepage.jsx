@@ -24,13 +24,12 @@ const Onepage = () => {
     const [adoptData,setAdoptData] = useState();
     const [volunteerData,setVolunteerData] = useState();
     const [assetData,setAssetData] = useState();
-    // const [subscribeData,setSubscribeData] = useState();
 
     const [subName, setSubName] = useState();
     const [subMail, setSubMail] = useState();
     const [message, setMessage] = useState({});
 
-    // const [errors,setErrors] = useState([]);
+  
 
     // Using promise.all to fetch multiple responses as almost all the database is needed for the landingpage.
     // NOTE : As of July 15, 2020, Axios updated its GitHub README file to reflect that the axios.all helper method has been deprecated and should be replaced with Promise.all.
@@ -60,7 +59,7 @@ const Onepage = () => {
                 setAssetData(asset);
             })
             .catch(error =>{
-                // setErrors(true);
+                
                 console.log(error);
             });
         }
@@ -68,20 +67,18 @@ const Onepage = () => {
         getData();
     },[]);
 
-    const newSubscriber = (event) => {
-        event.preventDefault();
+    const newSubscriber = () => {
 
-        console.log(subMail);
         const endpoint = `http://localhost:4000/api/v1/subscribers`;
         axios.post(endpoint, {
             name :subName, 
             email :subMail
         }).then(response => {
-            // setSubscribeData(response);
+            
             console.log(response);
             setMessage({text:'Du er nu Tilmeldt',color:'green'});
         }).catch(error => {
-            // setErrors(true);
+            
             console.log(error);
             setMessage({text:'Var felterne udfyldt korrekt?',color:'red'});
         });
@@ -89,10 +86,21 @@ const Onepage = () => {
         document.querySelector('#name').value='';
         document.querySelector('#email').value='';
 
-        
-
     }
 
+    const validateForm = (event) => {
+        event.preventDefault();
+
+        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+
+        !validInputRegex.test(subMail) && setMessage({text:'e-mail er ugyldigt', color:'red'});
+        !validInputRegex.test(subName) && setMessage({text:'Navn er ugyldigt', color:'red'});
+        
+        if(validInputRegex.test(subMail) && validInputRegex.test(subName)){
+            setMessage({text:'Loading..', color:'blue'});
+            newSubscriber();
+        }
+    }
     return (
         <>
             
@@ -176,7 +184,7 @@ const Onepage = () => {
                     
                     <Button 
                         text="send"
-                        action={newSubscriber} 
+                        action={validateForm} 
                     />
                     </span> 
                 </form>
