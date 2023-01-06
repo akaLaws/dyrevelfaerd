@@ -3,20 +3,6 @@ import 'tw-elements';
 const HeroSlider = (props) => {
     
     props.assets.map(item => console.log(item.id));
-    // const [heroData, setHeroData] = useState();
-    // const [assetData, setAssetData] = useState();
-
-    // const  getData = async() => {
-
-    //     const responseHero = await axios.get('http://localhost:4000/api/v1/adoptsections');
-    //     console.log(responseHero);
-    //     setHeroData(responseHero);
-
-    //     const responseAsset = await axios.get('http://localhost:4000/api/v1/assets');
-    //     console.log(responseAsset);
-    //     setAssetData(responseAsset);
-    // }
-    // getData();
     
 
     return ( 
