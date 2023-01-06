@@ -39,7 +39,7 @@ const TopMenu = () => {
 
     return ( 
         <nav className={styleUl}>
-            <button id="toggle" className="md:hidden" onClick={toggleMenu}>MENU</button>
+            <button id="toggle" className="md:hidden mt-4" onClick={toggleMenu}>MENU</button>
 
             <div className={visibilityMenu} id="menu">
                 <Link reloadDocument to="/" className="hover:text-black">Hjem</Link>

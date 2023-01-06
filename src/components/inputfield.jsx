@@ -2,10 +2,13 @@ const InputField = (props) => {
     return ( 
         <span className="
             flex 
+            flex-col
             w-full
             md:max-w-[45%]
+            sm:flex-row
             gap-4
-            place-items-center
+            place-content-center
+            sm:place-items-center
             
         ">
             <label 
