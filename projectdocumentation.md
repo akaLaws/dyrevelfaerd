@@ -1,7 +1,7 @@
 # Foreningen for Dyrevelfærd
 *Af: Sarah-Elizabeth Laws*
 
-Link til deb ændrede backend: `https://github.com/akaLaws/dyrevelfaerd-api`
+Link til den ændrede backend: `https://github.com/akaLaws/dyrevelfaerd-api`
 
 Link til lokal hosting af sitet: `http://localhost:3000/`
 
@@ -19,7 +19,7 @@ Projektet er udført som en Singlepage Application (SPA) med [React.js](https://
 
 App'en oplever noget lack på performance der kunne gøre det interessant at teste [Svelte](https://svelte.dev/) eller endda [Vue petite](https://github.com/vuejs/petite-vue) give app'ens begrænsede størrelse.
 
-Der er brugt [Tailwind](https://tailwindcss.com/) som utility framework til CSS'en. Valget er baseret på tilgengæligheden og fleksibilitieten i den direkte inline tilgang til stylingen. Hvorom at jeg perosnligt foretrækker en mere semantisk komponent tilgang til CSS er det svært ikke at benægte fordelne ved [Tailwind](https://tailwindcss.com/). Givet den generelle modulære arkitektoniske tilgang til [React.js](https://reactjs.org/) så er inline stylingen ikke for overvældende gjort korrekt.
+Der er brugt [Tailwind](https://tailwindcss.com/) som utility framework til CSS'en. Valget er baseret på tilgengæligheden og fleksibilitieten i den direkte inline tilgang til stylingen. Hvorom at jeg perosnligt foretrækker en mere semantisk komponent tilgang til CSS er det svært ikke at se fordelene ved [Tailwind](https://tailwindcss.com/). Givet den generelle modulære arkitektoniske tilgang til [React.js](https://reactjs.org/) så er inline stylingen ikke for overvældende gjort korrekt.
 
 **Tilføjelserne**
 En kærlig tanke skal sendes til [npm](https://www.npmjs.com/) der gør det muligt at installere pakker som bibllioteker der kan lette arbejdet med udviklingen lidt. Dem som jeg har brugt i dette projekt er følgende:
@@ -29,14 +29,14 @@ En kærlig tanke skal sendes til [npm](https://www.npmjs.com/) der gør det muli
 * [React Cookie](https://www.npmjs.com/package/react-cookie) - Bibliotek til håntering af cookies i react
 * [Axios](https://axios-http.com/) - Promise baseret HTTP Client for browseren der håndtere kald til backend API'et 
 * [Tailwind](https://tailwindcss.com/) - CSS Utility framework til at style komponenterne
-* [Tailwind Elements](https://tailwind-elements.com/) - UI komponent bibliotk i taiilwind for færdig styling og funktionalitet af nogle elementer herunder slideren
+* [Tailwind Elements](https://tailwind-elements.com/) - UI komponent bibliotek i taiilwind for færdig styling og funktionalitet af nogle elementer herunder slideren
 
-Valget af pakker er baseret til dels på erfaringer og anbefalinger. Nogle har jeg arbejdet med før og er derfor oplagte at bruge i et tidspresset projekt. Om disse initielt var først på googles resultat liste eller anbefalinger fra andre. Enkelte tilføjelser har jeg først arbejdet med i dette projekt på baggrund af anbefalinger og søgninger, huender [Axios](https://axios-http.com/) og [Tailwind Elements](https://tailwind-elements.com/).
+Valget af pakker er baseret til dels på erfaringer og anbefalinger. Nogle har jeg arbejdet med før og er derfor oplagte at bruge i et tidspresset projekt. Om disse initielt var først på googles resultat liste eller anbefalinger fra andre. Enkelte tilføjelser har jeg først arbejdet med i dette projekt på baggrund af anbefalinger og søgninger, herunder [Axios](https://axios-http.com/) og [Tailwind Elements](https://tailwind-elements.com/).
 
 ### Tredjeparts kode
 Den eneste koierede tredjepartskode er for [Carousel slideren](https://tailwind-elements.com/docs/standard/components/carousel/) som er et komponent i [Tailwind Elements](https://tailwind-elements.com/). Årsagen til brug af tredjepart kompnenet i dette tilfælde falder på at asiminilationen man ser i design for web baseret på erfaringer i UX giver muligheden for brugen af UI biblioteker da UI komponenter netop går igen på tværs af designs. Dette betyder at udvikleren kan bruge mindre tid på implementering af design og i stedet fokusere på funktionaliteten af et site. Medmindre man er ansat direkte som UX ingeniør eller UI udvikler vil man enten skulle sidde med API integration eller generel JavaScript til udvikling af bestemte features. Det er derfor en fordel at kunne spare tid ved anvendelsen af et UI komponents bibliotek. 
 
-Havde jeg selv skulle levere esignet for opgaven vil jeg i større grad have gjort brug af eksisterende UI kompnenter til formålet netop for at spare tid. 
+Havde jeg selv skulle levere designet for opgaven vil jeg i større grad have gjort brug af eksisterende UI kompnenter til formålet netop for at spare tid. 
 
 Implementering af koden kan ses i [HeroSlider.jsx komponentet](src/components/HeroSlider.jsx).
 
@@ -44,12 +44,14 @@ Implementering af koden kan ses i [HeroSlider.jsx komponentet](src/components/He
 I opgaven bliver der lagt op til frit design af hhv. slideren til landingpage, login siden og administrationspanelet for indholdsredigeren. 
 
 ### Slideren
-Valget på løsningen af slideren er baseret signmæssigt ud fra det færdige [Carousel slider](https://tailwind-elements.com/docs/standard/components/carousel/) komponent fra [Tailwind Elements](https://tailwind-elements.com/). Den er placeret i bunden af siden da dette giver en mere harmonisk æstestik i kontekst af de eksisterende Hero billeder med tekst. At den er placeret i bunden af listen med dyr til adoption gør det oplagt at lade den slide mellem billeder fra databasen af disse. Dette er dog ikke sat op endnu givet prioriteringen af andre features. 
+Valget på løsningen af slideren er baseret designmæssigt ud fra det færdige [Carousel slider](https://tailwind-elements.com/docs/standard/components/carousel/) komponent fra [Tailwind Elements](https://tailwind-elements.com/). Den er placeret i bunden af siden da dette giver en mere harmonisk æstestik i kontekst af de eksisterende Hero billeder med tekst. At den er placeret i bunden af listen med dyr til adoption gør det oplagt at lade den slide mellem billeder fra databasen af disse. Dette er dog ikke sat op endnu givet prioriteringen af andre features. 
 
 ### Login
-Login siden viderefører designet fra resten af sitet med en simpel form box med hvis baggrund. Da denne kun er ment som adgang til redigering af indhold på siden er der ikke gjort mere ud af stylingen iht. evt. grafik samt der heller ikke er mulighed for login med ekstern authentication, da igen det er administrativt login. 
+Login siden viderefører designet fra resten af sitet med en simpel form box med hvid baggrund. Da denne kun er ment som adgang til redigering af indhold på siden er der ikke gjort mere ud af stylingen iht. evt. grafik samt der heller ikke er mulighed for login med ekstern authentication, da igen det er administrativt login. 
 
 Når man er logget ind gemmes input felterne for at blive erstattet med en melding om at man er logget ind med link videre til administrationspanelet. Denne kunne også blive løst med en direkte omdirigering af login siden til administrationspanelet.  
+
+![screenshot af login](docassets/login.png)
 
 ### Administrationspanelet
 Adminpanelet består af en simpel liste der hhv. indeholder overskrift på sektionen, formular for nye tilføjelser, eksisterende indhold fra databasen samt en formular for redigering af disse som enten kan skjules eller vises ved behov. 
@@ -59,6 +61,8 @@ Det enkelte indhold fra databasen er udskrevet i bokse med gråd skrift og kant 
 Det klarer jobbet men det er ikke ideal UX og med mere tid ville denne side også se meget anderledes ud. 
 
 Igen er designet holdt til at stemme overens med det eksisterende design herunder UI kompnenter som knapper og inputfelter. Liste designet er nyt med udgangspunkt i en mørk baggrund for den hvide overskirft for netop tydeligt at adskille komponenterne for bedre overblik til trods for den misforståede minimalisme i designets udførsel. 
+
+![screenshot af adminpanel](docassets/adminpanel.png)
 
 ### Responsiveness
 Med primære breakpoint i tailwinds `md:` hvilket svare til `768px` og enkelte elementer med breakpoint i `sm:` svarende til `640px` er sitet fuldt responsive. Dette er bl.a. primært løst med CSS flexbox. Dette er blot rent omstændigt da der ikke var mange komponenter der behøvede grid. Det kunne dog være oplagt at implementere grid i et redesign af administrationspanelet. 
@@ -345,6 +349,7 @@ const editAdopt = () =>{
 ```
 
 Som udgangspunkt var det ikke muligt at oprette blledet sammen med resten af dataen for de tabeller der bruger billeder. Dette virkede som at kunne blive et potentielt kringlet UI at skulle sætte op i frontenden. Jeg tillod mig derfor at tilføje en ændring i backenden for hhv. oprettelse og redigering i controllerne der tilføjer billedet før dataen og sender id'et med til data oprettelsen.
+[se filen animal.controller.js her](https://github.com/akaLaws/dyrevelfaerd-api/blob/main/controllers/animal.controller.js).
 
 ```JavaScript
 
@@ -409,6 +414,6 @@ Der er desuden mange andre elementer jeg gerne vil have finpudset og justeret p�
 
 Mit største ønske havde jeg mere tid ville være at kunen refactor min kode. Den trænger desperat til et clean sweep. Der er flere elementer herunder delete funktionerne som kunne med forsel smides ud i komponenter. Der er semantik eller mangel på samme der kan krølle tæer foruden der kun er skænket en begrænset tanke til accesability. Sitet fungere som et MVP men det er langt fra et færdigt produkt og vil kun aflevere det til kunden som en midlertidig løsning mens jeg fik styr på det sidste. Dog ville det nok ikke tage mere end max en arbejdsuge inkl. buffer tid. 
 
-... når ja.. og så ville jeg selvfølgelig gerne have den deployed.
+... nå ja.. og så ville jeg selvfølgelig gerne have den deployed.
 
 Overordnet set er jeg tilfreds. Siden opfylder kravene og den fungere. Jeg nåede mine mål og overholdt min tidsplan og jeg er ikke stresset.
