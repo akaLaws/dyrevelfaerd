@@ -1,14 +1,17 @@
 # Foreningen for Dyrevelfærd
 *Af: Sarah-Elizabeth Laws*
 
-Link til lokal hosting af sitet:
-`http://localhost:3000/`
+Link til deb ændrede backend: `https://github.com/akaLaws/dyrevelfaerd-api`
+Link til lokal hosting af sitet: `http://localhost:3000/`
 
-Link til login:
-`http://localhost:3000/login`
+Link til login: `http://localhost:3000/login`
 
-`Brugernavn: admin`
-`Kode: 1234`
+```
+Brugernavn: admin
+Kode: 1234
+```
+
+
 
 ## Teknologien
 Projektet er udført som en Singlepage Application (SPA) med [React.js](https://reactjs.org/) biblioteket. Valget af react er baseret i at det er dette bibliotek der primært undervises i på Roskilde Tekniske Skole og derfor reflektere de nødvendige kompetencer for at kunne undervise i det givent pensum. Alternative teknologier til udførsel kunne bl.a. have været [Vue.js](https://vuejs.org/) eller [Svelte](https://svelte.dev/).
