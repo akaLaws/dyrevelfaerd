@@ -51,7 +51,7 @@ Login siden viderefører designet fra resten af sitet med en simpel form box med
 
 Når man er logget ind gemmes input felterne for at blive erstattet med en melding om at man er logget ind med link videre til administrationspanelet. Denne kunne også blive løst med en direkte omdirigering af login siden til administrationspanelet.  
 
-![screenshot af login](docassets/login.png)
+![screenshot af login](https://github.com/akaLaws/dyrevelfaerd/blob/main/docassets/login.PNG)
 
 ### Administrationspanelet
 Adminpanelet består af en simpel liste der hhv. indeholder overskrift på sektionen, formular for nye tilføjelser, eksisterende indhold fra databasen samt en formular for redigering af disse som enten kan skjules eller vises ved behov. 
@@ -62,7 +62,7 @@ Det klarer jobbet men det er ikke ideal UX og med mere tid ville denne side ogs�
 
 Igen er designet holdt til at stemme overens med det eksisterende design herunder UI kompnenter som knapper og inputfelter. Liste designet er nyt med udgangspunkt i en mørk baggrund for den hvide overskirft for netop tydeligt at adskille komponenterne for bedre overblik til trods for den misforståede minimalisme i designets udførsel. 
 
-![screenshot af adminpanel](docassets/adminpanel.png)
+![screenshot af adminpanel](https://github.com/akaLaws/dyrevelfaerd/blob/main/docassets/adminpanel.PNG)
 
 ### Responsiveness
 Med primære breakpoint i tailwinds `md:` hvilket svare til `768px` og enkelte elementer med breakpoint i `sm:` svarende til `640px` er sitet fuldt responsive. Dette er bl.a. primært løst med CSS flexbox. Dette er blot rent omstændigt da der ikke var mange komponenter der behøvede grid. Det kunne dog være oplagt at implementere grid i et redesign af administrationspanelet. 
