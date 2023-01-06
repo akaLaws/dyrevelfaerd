@@ -414,6 +414,5 @@ Der er desuden mange andre elementer jeg gerne vil have finpudset og justeret p�
 
 Mit største ønske havde jeg mere tid ville være at kunen refactor min kode. Den trænger desperat til et clean sweep. Der er flere elementer herunder delete funktionerne som kunne med forsel smides ud i komponenter. Der er semantik eller mangel på samme der kan krølle tæer foruden der kun er skænket en begrænset tanke til accesability. Sitet fungere som et MVP men det er langt fra et færdigt produkt og vil kun aflevere det til kunden som en midlertidig løsning mens jeg fik styr på det sidste. Dog ville det nok ikke tage mere end max en arbejdsuge inkl. buffer tid. 
 
-... nå ja.. og så ville jeg selvfølgelig gerne have den deployed.
 
 Overordnet set er jeg tilfreds. Siden opfylder kravene og den fungere. Jeg nåede mine mål og overholdt min tidsplan og jeg er ikke stresset.
