@@ -93,7 +93,7 @@ const Onepage = () => {
     const validateForm = (event) => {
         event.preventDefault();
 
-        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+        const validInputRegex = new RegExp('^[-a-zA-Z0-9!@&()`.,/"\']{3,1500}$');
 
         !validInputRegex.test(subMail) && setMessage({text:'e-mail er ugyldigt', color:'red'});
         !validInputRegex.test(subName) && setMessage({text:'Navn er ugyldigt', color:'red'});

@@ -80,8 +80,8 @@ const HeroForm = (props) => {
     const validateForm = (event) => {
         event.preventDefault();
 
-        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
-
+        const validInputRegex = new RegExp('^[-a-zA-Z0-9!@&()`.,/"\']{3,1500}$');
+        
         !validInputRegex.test(heroTitle) && setHeroMsg({text:'Titel er ugyldigt', color:'red'});
         !validInputRegex.test(heroContent) && setHeroMsg({text:'Indhold er ugyldigt', color:'red'});
         

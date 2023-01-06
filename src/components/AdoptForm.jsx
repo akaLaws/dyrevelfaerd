@@ -55,7 +55,7 @@ const AdoptForm = (props) => {
        setAdoptImg('');
        setAdoptAge('');
        setAdoptDescribe('');
-
+        document.querySelector('#animalImg').value= '';
     }
     
 
@@ -84,13 +84,15 @@ const AdoptForm = (props) => {
     const validateForm = (event) => {
         event.preventDefault();
 
-        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
+        console.log(adoptName, adoptDescribe,adoptAge)
+
+        // FOr some reason it  won't work on the describe- it won't allow the copy pasted or any longer input? Maybe because of multilline - i'll look into it later
+        const validInputRegex = new RegExp('^[-a-zA-Z0-9!@&()`.,/"\']{3,1500}$');
 
         !validInputRegex.test(adoptName) && setAdoptMsg({text:'Navn er ugyldigt', color:'red'});
-        !validInputRegex.test(adoptAge) && setAdoptMsg({text:'Alder er ugyldigt', color:'red'});
         !validInputRegex.test(adoptDescribe) && setAdoptMsg({text:'Beskrivelse er ugyldigt', color:'red'});
         
-        if(validInputRegex.test(adoptName) && validInputRegex.test(adoptDescribe) && validInputRegex.test(adoptAge)){
+        if(validInputRegex.test(adoptName) && validInputRegex.test(adoptDescribe) ){
             setAdoptMsg({text:'Loading..', color:'blue'});
             props.editId && props.editId !== '' ? editAdopt() : newAdopt();
         }
@@ -108,7 +110,7 @@ const AdoptForm = (props) => {
             label="Billede" 
             type="file" 
             id="animalImg" 
-            // value={props.file} 
+
             action={(event) => setAdoptImg(event.target.files[0])}/>
             {props.file && <img src={props.file} alt={props.name} />}
         <InputField 

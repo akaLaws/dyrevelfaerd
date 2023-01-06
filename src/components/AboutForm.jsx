@@ -77,8 +77,8 @@ const AboutForm = (props) => {
     const validateForm = (event) => {
         event.preventDefault();
 
-        const validInputRegex = new RegExp('^[A-Za-z0-9]{3,20}$');
-
+        const validInputRegex = new RegExp('^[-a-zA-Z0-9!@&()`.,/"\']{3,1500}$');
+        
         !validInputRegex.test(aboutTitle) && setAboutMsg({text:'Titel er ugyldigt', color:'red'});
         !validInputRegex.test(aboutContent) && setAboutMsg({text:'Indhold er ugyldigt', color:'red'});
         
