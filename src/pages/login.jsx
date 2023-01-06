@@ -11,6 +11,8 @@ const Login = () => {
    
 
     const [cookies,setCookies] = useCookies(['token']);
+    let token = cookies.token;
+    console.log(token);
     const navigate = useNavigate();
 
 
@@ -60,8 +62,8 @@ const Login = () => {
             m-auto
             mt-16
         ">
-            {cookies && <p>DU ER LOGGET IND <Link to="/adminpanel" className="text-blue-600 hover:text-blue-900">GÅ TIL ADMINPANEL</Link></p>}
-            
+            {token && <p>DU ER LOGGET IND <Link to="/adminpanel" className="text-blue-600 hover:text-blue-900">GÅ TIL ADMINPANEL</Link></p>}
+            {!token && <>
             <InputField 
                 type="text" 
                 id="user" 
@@ -80,6 +82,7 @@ const Login = () => {
             />
             <Message content={message} color='blue' />
             <p>{message}</p>
+            </>}
         </form>
     
     )
